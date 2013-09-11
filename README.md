@@ -1,5 +1,7 @@
 "Footnotes" is a [Jekyll](http://jekyllrb.com/) plugin that helps inserts footnote reference and body HTML, with automatic numbering, if desired.
 
+This plugin is necessary if you want footnotes with markup, but Maruku would suffice if you will use plaintext notes exclusively.
+
 ### Install
 
     cd /root/of/site
