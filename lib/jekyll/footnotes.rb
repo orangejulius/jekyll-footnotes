@@ -33,7 +33,7 @@ module Jekyll
       end
       context.stack do
         body = super
-        "<li id=\"fn:#{@id}\" class=\"footnotebody\"value=\"#{@id}\">#{body}<a href=\"#fn-back:#{@id}\" class=\"backlink\">⏎</a></li>"
+        "<li id=\"fn:#{@id}\" class=\"footnotebody\" value=\"#{@id}\">#{body}<a href=\"#fn-back:#{@id}\" class=\"backlink\">⏎</a></li>"
       end
     end
   end
