@@ -1,7 +1,23 @@
 require "jekyll/footnotes/version"
 
+module FootnoteUtils
+  def page_hash(page)
+    page['url'].hash.to_s(16)[-4,4]
+  end
+
+  def footnote_id(context, id)
+    "#{page_hash(context.registers[:page])}:fn:#{id}"
+  end
+
+  def backlink_id(context, id)
+    "#{page_hash(context.registers[:page])}:fn-back:#{id}"
+  end
+end
+
 module Jekyll
   class FootnoteTag < Liquid::Tag
+    include FootnoteUtils
+
     def initialize(tag_name, id, tokens)
       raise(SyntaxError.new("invalid footnote ID")) if ['"', '<', '>'].any? { |c| id.include?(c) }
       @id = id.strip unless id.strip.empty?
@@ -14,11 +30,13 @@ module Jekyll
         context.registers[:fn] = context.registers[:fn].next
         @id = context.registers[:fn]
       end
-      "<sup><a href=\"#fn:#{@id}\" class=\"footnote\" id=\"fn-back:#{@id}\">#{@id}</a></sup>"
+      "<sup><a href=\"#{footnote_id(context, @id)}\" class=\"footnote\" id=\"#{backlink_id(context, @id)}\">#{@id}</a></sup>"
     end
   end
 
   class FootnoteBody < Liquid::Block
+    include FootnoteUtils
+
     def initialize(tag_name, id, tokens)
       raise(SyntaxError.new("invalid footnote ID")) if ['"', '<', '>'].any? { |c| id.include?(c) }
       @id = id.strip unless id.strip.empty?
@@ -33,7 +51,7 @@ module Jekyll
       end
       context.stack do
         body = super
-        "<li id=\"fn:#{@id}\" class=\"footnotebody\" value=\"#{@id}\">#{body}<a href=\"#fn-back:#{@id}\" class=\"backlink\">⏎</a></li>"
+        "<li id=\"#{footnote_id(context, @id)}\" class=\"footnotebody\" value=\"#{@id}\">#{body}<a href=\"##{backlink_id(context, @id)}\" class=\"backlink\">⏎</a></li>"
       end
     end
   end
