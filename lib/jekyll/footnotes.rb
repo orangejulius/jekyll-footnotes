@@ -14,7 +14,7 @@ module Jekyll
         context.registers[:fn] = context.registers[:fn].next
         @id = context.registers[:fn]
       end
-      "<sup><a href=\"#fn:#{@id}\" class=\"footnote\" rel=\"footnote\" id=\"fn-back:#{@id}\">#{@id}</a></sup>"
+      "<sup><a href=\"#fn:#{@id}\" class=\"footnote\" id=\"fn-back:#{@id}\">#{@id}</a></sup>"
     end
   end
 
