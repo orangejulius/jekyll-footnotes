@@ -32,6 +32,27 @@ easy reading.
        {% endfnbody %}
     {% endfootnotes %}
 
+## CSS Styling
+The following CSS selectors allow the footnotes, footnote bodies, and backlinks
+to be customised using CSS
+
+```CSS
+.footnote {
+  /* a single footnote link */
+}
+.footnotelist {
+  /* entire footnote section */
+}
+
+.footnotelist .footnotebody {
+  /* a single footnote body  */
+}
+
+.footnotelist .backlink {
+  /* backlink to the footnote link */
+}
+```
+
 Do not mix custom and automatic numbering (although it will work if you only
 use custom numbers above the highest automatic one).
 
