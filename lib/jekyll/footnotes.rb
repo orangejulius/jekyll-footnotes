@@ -14,7 +14,7 @@ module Jekyll
         context.registers[:fn] = context.registers[:fn].next
         @id = context.registers[:fn]
       end
-      "<sup><a href=\"#fn:#{@id}\" class=\"footnote\" rel=\"footnote\">#{@id}</a></sup>"
+      "<sup><a href=\"#fn:#{@id}\" class=\"footnote\" rel=\"footnote\" id=\"fn-back:#{@id}\">#{@id}</a></sup>"
     end
   end
 
@@ -33,7 +33,7 @@ module Jekyll
       end
       context.stack do
         body = super
-        "<li id=\"fn:#{@id}\" class=\"footnotebody\"value=\"#{@id}\">#{body}</li>"
+        "<li id=\"fn:#{@id}\" class=\"footnotebody\"value=\"#{@id}\">#{body}<a href=\"#fn-back:#{@id}\" class=\"backlink\">⏎</a></li>"
       end
     end
   end
