@@ -8,7 +8,8 @@ easy reading.
 ## Install
 
 * Include "jekyll-footnotes" in your Gemfile, or install the gem
-* Add "jekyll-footnotes to the plugins section of \_config.yml
+* Add "jekyll/footnotes to the plugins section of \_config.yml *Note:
+  jekyll-footnotes won't work.* be sure to use the backslash.
 
 ## Automatic numbering
     hello{% fn %} world{% fn %}
