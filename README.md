@@ -1,16 +1,16 @@
-"Footnotes" is a [Jekyll](http://jekyllrb.com/) plugin that helps inserts footnote reference and body HTML, with automatic numbering, if desired.
+"Footnotes" is a [Jekyll](http://jekyllrb.com/) plugin that helps inserts
+footnote reference and body HTML, with automatic numbering, if desired.
 
-This plugin is necessary if you want footnotes with markup, but Maruku would suffice if you will use plaintext notes exclusively.
+All footnotes will include a superscript link to the footnotes body. The
+footnote body will include a link back to the footnote (using the ⏎ icon ) for
+easy reading.
 
-### Install
+## Install
 
-    cd /root/of/site
-    mkdir -p _plugins
-    wget -O _plugins/footnote.rb "https://raw.github.com/beneills/jekyll-footnotes/master/footnotes.rb"
+* Include "jekyll-footnotes" in your Gemfile, or install the gem
+* Add "jekyll-footnotes to the plugins section of \_config.yml
 
-
-### Automatic numbering:
-
+## Automatic numbering
     hello{% fn %} world{% fn %}
     {% footnotes %}
        {% fnbody %}
@@ -20,8 +20,8 @@ This plugin is necessary if you want footnotes with markup, but Maruku would suf
           <em>monde</em>
        {% endfnbody %}
     {% endfootnotes %}
-### Custom numbering:
 
+## Custom numbering:
     hello{% fn 3 %} world{% fn 5 %}
     {% footnotes %}
        {% fnbody 3 %}
@@ -32,11 +32,15 @@ This plugin is necessary if you want footnotes with markup, but Maruku would suf
        {% endfnbody %}
     {% endfootnotes %}
 
-Do not mix custom and automatic numbering (although it will work if you only use custom numbers above the highest automatic one).
+Do not mix custom and automatic numbering (although it will work if you only
+use custom numbers above the highest automatic one).
 
-Only numeric IDs are allowed currently.  Other IDs will work if you modify the HTML snippets below to remove <ol>
+Only numeric IDs are allowed currently.
 
 **We generate valid HTML5**
 
 
-Ben Eills, 2013
+© Ben Eills, 2013
+© Julian Simioni, 2015
+
+Released under the MIT License
