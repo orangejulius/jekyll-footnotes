@@ -53,6 +53,8 @@ to be customised using CSS
 }
 ```
 
+## Notes
+
 Do not mix custom and automatic numbering (although it will work if you only
 use custom numbers above the highest automatic one).
 
