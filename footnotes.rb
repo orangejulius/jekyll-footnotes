@@ -1,38 +1,4 @@
 module Jekyll
-
-  # "Footnotes" helps inserts footnote reference and body HTML, with
-  # automatic numbering, if desired.
-  #
-  # == Automatic numbering:
-  #    hello{% fn %} world{% fn %}
-  #    {% footnotes %}
-  #       {% fnbody %}
-  #          <p>salut</p>
-  #       {% endfnbody %}
-  #       {% fnbody %}
-  #          <em>monde</em>
-  #       {% endfnbody %}
-  #    {% endfootnotes %}
-  #
-  # == Custom numbering:
-  #    hello{% fn 3 %} world{% fn 5 %}
-  #    {% footnotes %}
-  #       {% fnbody 3 %}
-  #          <p>salut</p>
-  #       {% endfnbody %}
-  #       {% fnbody 5 %}
-  #          <em>monde</em>
-  #       {% endfnbody %}
-  #    {% endfootnotes %}
-  #
-  # Do not mix custom and automatic numbering (although it will work
-  # if you only use custom numbers above the highest automatic one).
-  #
-  # Only numeric IDs are allowed currently.  Other IDs will work if
-  # you modify the HTML snippets below to remove <ol>
-  #
-  # We generate valid HTML5
-  #
   class FootnoteTag < Liquid::Tag
     def initialize(tag_name, id, tokens)
       raise(SyntaxError.new("invalid footnote ID")) if ['"', '<', '>'].any? { |c| id.include?(c) }
@@ -46,11 +12,10 @@ module Jekyll
         context.registers[:fn] = context.registers[:fn].next
         @id = context.registers[:fn]
       end
-      "<sup><a href=\"#fn:#{@id}\" class=\"footnote\" rel=\"footnote\">#{@id}</a></sup>"      
+      "<sup><a href=\"#fn:#{@id}\" class=\"footnote\" rel=\"footnote\">#{@id}</a></sup>"
     end
   end
-  
-  
+
   class FootnoteBody < Liquid::Block
     def initialize(tag_name, id, tokens)
       raise(SyntaxError.new("invalid footnote ID")) if ['"', '<', '>'].any? { |c| id.include?(c) }
