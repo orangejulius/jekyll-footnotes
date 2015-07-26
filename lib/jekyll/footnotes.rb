@@ -60,7 +60,9 @@ module Jekyll
     def render(context)
       context.stack do
         body = super
-        "<ol class=\"footnotelist\">#{body}</ol>"
+        site = context.registers[:site]
+        converter = site.getConverterImpl(Jekyll::Converters::Markdown)
+        "<ol class=\"footnotelist\">#{converter.convert(body)}</ol>"
       end
     end
   end
