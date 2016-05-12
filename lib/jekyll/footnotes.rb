@@ -61,7 +61,11 @@ module Jekyll
       context.stack do
         body = super
         site = context.registers[:site]
-        converter = site.getConverterImpl(Jekyll::Converters::Markdown)
+        converter = if site.respond_to?(:find_converter_instance)
+                      site.find_converter_instance(Jekyll::Converters::Markdown)
+                    else
+                      site.getConverterImpl(Jekyll::Converters::Markdown)
+                    end
         "<ol class=\"footnotelist\">#{converter.convert(body)}</ol>"
       end
     end
